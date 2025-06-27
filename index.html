@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Kalkulator Inicjatywy</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      padding: 20px;
+      background: #f4f4f4;
+    }
+    .container {
+      max-width: 600px;
+      margin: auto;
+      background: #fff;
+      padding: 20px;
+      border-radius: 12px;
+      box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-top: 10px;
+    }
+    select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 5px;
+      border-radius: 6px;
+    }
+    button {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      font-size: 16px;
+      background: #0078d4;
+      color: white;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #005ea2;
+    }
+    #result {
+      margin-top: 20px;
+      font-size: 18px;
+      text-align: center;
+      font-weight: bold;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Kalkulator Punktowy</h2>
+
+    <label>Quality improvement:</label>
+    <select id="quality">
+      <option value="0">No</option>
+      <option value="5">Yes</option>
+    </select>
+
+    <label>Impact on Standardization:</label>
+    <select id="standardization">
+      <option value="0">No</option>
+      <option value="5">Yes</option>
+    </select>
+
+    <label>Time Saving per month:</label>
+    <select id="time">
+      <option value="0">up to 0.5h</option>
+      <option value="5">0.5 - 2h</option>
+      <option value="10">2 - 5h</option>
+      <option value="15">above 5h</option>
+      <option value="0">N/A</option>
+    </select>
+
+    <label>Cash per month:</label>
+    <select id="cash">
+      <option value="5">up to 200PLN</option>
+      <option value="10">200 - 500PLN</option>
+      <option value="15">above 500PLN</option>
+      <option value="0">N/A</option>
+    </select>
+
+    <button onclick="calculateScore()">Oblicz punkty</button>
+    <div id="result"></div>
+  </div>
+
+  <script>
+    function calculateScore() {
+      const quality = parseInt(document.getElementById("quality").value);
+      const standardization = parseInt(document.getElementById("standardization").value);
+      const time = parseInt(document.getElementById("time").value);
+      const cash = parseInt(document.getElementById("cash").value);
+      const total = quality + standardization + time + cash;
+      document.getElementById("result").textContent = `Suma punktów: ${total}`;
+    }
+  </script>
+</body>
+</html>
