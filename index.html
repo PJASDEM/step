@@ -31,20 +31,6 @@
       margin-top: 5px;
       border-radius: 6px;
     }
-    button {
-      margin-top: 20px;
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      background: #0078d4;
-      color: white;
-      border: none;
-      border-radius: 6px;
-      cursor: pointer;
-    }
-    button:hover {
-      background: #005ea2;
-    }
     #result {
       margin-top: 20px;
       font-size: 18px;
@@ -86,19 +72,28 @@
       <option value="0">N/A</option>
     </select>
 
-    <button onclick="calculateScore()">Oblicz punkty</button>
-    <div id="result"></div>
+    <div id="result">Suma punktów: 0</div>
   </div>
 
   <script>
+    const selects = document.querySelectorAll('select');
+    const resultDiv = document.getElementById('result');
+
     function calculateScore() {
-      const quality = parseInt(document.getElementById("quality").value);
-      const standardization = parseInt(document.getElementById("standardization").value);
-      const time = parseInt(document.getElementById("time").value);
-      const cash = parseInt(document.getElementById("cash").value);
-      const total = quality + standardization + time + cash;
-      document.getElementById("result").textContent = `Suma punktów: ${total}`;
+      let total = 0;
+      selects.forEach(select => {
+        total += parseInt(select.value);
+      });
+      resultDiv.textContent = `Suma punktów: ${total}`;
     }
+
+    // Dodaj nasłuchiwanie zmiany na każdym select
+    selects.forEach(select => {
+      select.addEventListener('change', calculateScore);
+    });
+
+    // Oblicz punkty przy pierwszym załadowaniu
+    calculateScore();
   </script>
 </body>
 </html>
